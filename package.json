@@ -5,18 +5,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -lr",
-    "build": "ng build",
+    "build": "ng build --aot --environment=prod",
     "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.2.4",
+    "@angular/animations": "^4.4.4",
     "@angular/common": "^4.2.4",
-    "@angular/compiler": "^4.2.4",
-    "@angular/core": "^4.2.4",
+    "@angular/compiler": "^4.4.4",
+    "@angular/core": "^4.4.4",
     "@angular/forms": "^4.2.4",
     "@angular/http": "^4.2.4",
-    "@angular/platform-browser": "^4.2.4",
+    "@angular/platform-browser": "^4.4.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
