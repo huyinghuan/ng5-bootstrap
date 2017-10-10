@@ -16,17 +16,16 @@ let template:string =
 `
 
 @Component({
-  selector: 'app-root',
+  selector: "login",
   template: template,
   providers:[API]
-  //styleUrls: ['./first.css']
 })
 export class LoginComponent {
   title = 'app';
   list:number[] = [];
   constructor(private api:API){}
   getList():void{
-    this.api.get().then(list => this.list = list)
+    //this.api.get().then(list => this.list = list)
   }
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

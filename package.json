@@ -4,9 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -lr",
-    "build": "ng build --aot --environment=prod",
-    "lint": "ng lint"
+    "start": "ng serve -lr --proxy-config proxy.conf.js",
+    "build": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +28,6 @@
     "@angular/language-service": "^4.2.4",
     "@types/node": "~6.0.60",
     "ts-node": "~3.2.0",
-    "tslint": "~5.7.0",
     "typescript": "~2.3.3"
   }
 }
