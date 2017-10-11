@@ -3,16 +3,30 @@ import { API } from '../services/API';
 
 let template:string = 
 `
-  <div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <div>
-    <ul>
-      <li *ngFor="let i of list;index as index;">{{index}}-{{i}}</li>
-    </ul>
-  </div>
-  </div>
+<div class="ui middle aligned center aligned grid" style="height: 100%">
+<div class="column" style="max-width: 450px;">
+  <h2 class="ui teal image header">
+    <!-- <img src="/img/logo.png" class="logo"> -->
+    <div class="content">Admin</div>
+  </h2>
+  <form class="ui large form">
+    <div class="ui stacked segment">
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <input type="text" placeholder="用户名" [(ngModel)]="user.name" name="user" >
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <input type="password" placeholder="密码" [(ngModel)]="user.password" name="password">
+        </div>
+      </div>
+      <div class="ui fluid large teal submit button" (click)="login(user)">Login</div>
+    </div>
+  </form>
+</div>
 `
 
 @Component({
@@ -21,15 +35,24 @@ let template:string =
   providers:[API]
 })
 export class LoginComponent {
-  title = 'app';
-  list:number[] = [];
+  user = {
+    name:"",
+    password:""
+  }
   constructor(private api:API){}
-  getList():void{
-    //this.api.get().then(list => this.list = list)
+  login(user){
+    this.api.post("/api/login", user).then((data)=>{
+      console.log(data,9999)
+    })
   }
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getList()
+    document.querySelector('body').setAttribute("class", "bg")
+  }
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    document.querySelector('body').removeAttribute("class")
   }
 }

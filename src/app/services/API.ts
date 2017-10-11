@@ -1,25 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptionsArgs } from '@angular/http';
+import { Http, Headers, RequestOptionsArgs, Response  } from '@angular/http';
+import {Router} from "@angular/router";
 import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class API {
-  constructor(private http:Http){}
+  constructor(private http:Http, private router:Router){}
   fetch(url, data, method="GET"){
     let options:RequestOptionsArgs=  {
-      method:method,
-      body: data
+      method:method
     }
     if(method!="GET"){
-      let header = new Headers()
-      header.set("Content-type", "application/x-www-form-urlencoded")
-      options.headers = header
+      options.body = JSON.stringify(data);
+    }else{
+      options.params = data;
     }
-    return this.http.request(url,options).toPromise()
+
+    return new Promise((resolve, reject)=>{
+      this.http.request(url,options).subscribe((response)=>{
+        console.log(response)
+        if(response.text()==""){
+          return resolve("")
+        }
+        resolve(response.json())
+      }, (errorResponse)=>{
+        switch(errorResponse.status){
+          case 401: 
+            this.router.navigateByUrl("/login");
+            break;
+          case 403:
+            console.log("用户名或密码错误");
+            break;
+          case 504:
+            console.log("服务器超时")
+            break;
+        }
+      })
+    })
   }
   get(url:string, data:any){
-    this.fetch(url, data).then((...args)=>{console.log(args)})
+    return this.fetch(url, data)
   }
   post(url:string, data:any){
-    this.fetch(url, data, "POST").then((...args)=>{console.log(args)})
+    return this.fetch(url, data, "POST")
   }
 }

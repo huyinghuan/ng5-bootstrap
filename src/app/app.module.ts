@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
 import {HttpModule} from '@angular/http'
+import { FormsModule }   from '@angular/forms'; 
+
 import {WelcomeComponent} from './components/welcome';
 import { LoginComponent } from './components/login';
 import { IndexComponent } from './components/index';
@@ -20,7 +22,7 @@ var router = RouterModule.forRoot([
     WelcomeComponent
   ],
   imports: [
-    BrowserModule , HttpModule, router
+    BrowserModule , HttpModule, FormsModule, router
   ],
   providers: [API],
   bootstrap: [IndexComponent]
