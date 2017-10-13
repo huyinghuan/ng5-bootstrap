@@ -16,13 +16,12 @@ export class API {
     }
 
     return new Promise((resolve, reject)=>{
-      this.http.request(url,options).subscribe((response)=>{
-        console.log(response)
+      this.http.request(url,options).subscribe((response:Response)=>{
         if(response.text()==""){
           return resolve("")
         }
         resolve(response.json())
-      }, (errorResponse)=>{
+      }, (errorResponse:Response)=>{
         switch(errorResponse.status){
           case 401: 
             this.router.navigateByUrl("/login");
@@ -33,6 +32,11 @@ export class API {
           case 504:
             console.log("服务器超时")
             break;
+          case 500:
+            console.log(errorResponse.text())
+            break;
+          default:
+            console.log("http status:", errorResponse.status, errorResponse.text())
         }
       })
     })

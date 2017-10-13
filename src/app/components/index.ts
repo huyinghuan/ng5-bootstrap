@@ -8,6 +8,7 @@ let template:string =
     <div class="header item"><i class="left delicious icon"></i>ss</div>
     <div class="header item"><a routerLink="/index" routerLinkActive="active">First Page</a></div>
     <div class="header item"><a [routerLink]="['second',1]" routerLinkActive="active">Second Page</a></div>
+    <div class="header item"><a [routerLink]="['second',2]" routerLinkActive="active">Second Page</a></div>
   </div>
   <div class="ui bottom attached segment pushable">
     <div class="pusher">
