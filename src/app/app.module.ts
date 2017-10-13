@@ -4,27 +4,44 @@ import { RouterModule }   from '@angular/router';
 import {HttpModule} from '@angular/http'
 import { FormsModule }   from '@angular/forms'; 
 
-import {WelcomeComponent} from './components/welcome';
-import { LoginComponent } from './components/login';
+import { AppComponent } from './components/app';
 import { IndexComponent } from './components/index';
+import { LoginComponent } from './components/login';
+
+//====== 二层页面
+
+import {FirstComponent} from './components/first'
+import {SecondComponent} from './components/second'
+
 import { API } from './services/API';
 
 var router = RouterModule.forRoot([
-  {path: "", redirectTo:"/welcome", pathMatch:"full"},
+  {path: "", redirectTo:"/index", pathMatch:"full"},
   {path: 'login',component: LoginComponent},
-  {path: "welcome", component: WelcomeComponent}
+  { path: "index",
+    component: IndexComponent,
+    children: [{
+      path:"",
+      component: FirstComponent
+    },{
+      path:"second/:id",
+      component: SecondComponent
+    }]
+  }
 ])
 
 @NgModule({
   declarations: [
+    AppComponent,
     LoginComponent,
     IndexComponent,
-    WelcomeComponent
+    FirstComponent,
+    SecondComponent
   ],
   imports: [
     BrowserModule , HttpModule, FormsModule, router
   ],
   providers: [API],
-  bootstrap: [IndexComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
