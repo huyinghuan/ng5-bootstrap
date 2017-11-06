@@ -6,7 +6,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './components/app';
 import { IndexPage } from './page/index';
-import { LoginComponent } from './components/login';
+import { LoginPage } from './page/login';
 
 //====== 二层页面
 
@@ -16,7 +16,7 @@ import { API } from './services/API';
 
 var router = RouterModule.forRoot([
   {path: "", redirectTo:"/index", pathMatch:"full"},
-  {path: 'login',component: LoginComponent},
+  {path: 'login',component: LoginPage},
   { path: "index",
     component: IndexPage
   }
@@ -25,7 +25,7 @@ var router = RouterModule.forRoot([
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginPage,
     IndexPage,
     MainRoutePage,
   ],

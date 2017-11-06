@@ -34,7 +34,7 @@ let template:string =
   template: template,
   providers:[API]
 })
-export class LoginComponent {
+export class LoginPage{
   user = {
     name:"",
     password:""
