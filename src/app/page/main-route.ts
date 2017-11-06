@@ -9,7 +9,7 @@ let template:string =
   selector: 'second-route',
   template: template
 })
-export class FirstComponent implements OnInit  {
+export class MainRoutePage implements OnInit  {
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

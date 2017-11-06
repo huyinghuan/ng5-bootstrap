@@ -5,13 +5,12 @@ import {HttpModule} from '@angular/http'
 import { FormsModule }   from '@angular/forms'; 
 
 import { AppComponent } from './components/app';
-import { IndexComponent } from './components/index';
+import { IndexPage } from './page/index';
 import { LoginComponent } from './components/login';
 
 //====== 二层页面
 
-import {FirstComponent} from './components/first'
-import {SecondComponent} from './components/second'
+import {MainRoutePage} from './page/main-route'
 
 import { API } from './services/API';
 
@@ -19,14 +18,7 @@ var router = RouterModule.forRoot([
   {path: "", redirectTo:"/index", pathMatch:"full"},
   {path: 'login',component: LoginComponent},
   { path: "index",
-    component: IndexComponent,
-    children: [{
-      path:"",
-      component: FirstComponent
-    },{
-      path:"second/:id",
-      component: SecondComponent
-    }]
+    component: IndexPage
   }
 ])
 
@@ -34,9 +26,8 @@ var router = RouterModule.forRoot([
   declarations: [
     AppComponent,
     LoginComponent,
-    IndexComponent,
-    FirstComponent,
-    SecondComponent
+    IndexPage,
+    MainRoutePage,
   ],
   imports: [
     BrowserModule , HttpModule, FormsModule, router
